@@ -1,0 +1,33 @@
+{
+	"name": "AzureSqlTable2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "empname",
+				"type": "varchar"
+			},
+			{
+				"name": "empno",
+				"type": "varchar"
+			},
+			{
+				"name": "empsal",
+				"type": "varchar"
+			},
+			{
+				"name": "emploc",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "test",
+			"table": "employee"
+		}
+	}
+}
