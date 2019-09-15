@@ -1,0 +1,17 @@
+{
+	"name": "localfile",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "C:\\Users\\waghhjag\\Downloads\\download",
+			"userId": "ap\\waghhjag",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4MTVlNmU1OS1mODRkLTRiMTEtOGRjMS1iYTVkYmE0MjJmN2MiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
