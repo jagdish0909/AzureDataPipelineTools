@@ -309,6 +309,7 @@
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
+					"firstRowAsHeader": true,
 					"quoteChar": "\""
 				},
 				"schema": [
@@ -395,7 +396,162 @@
 							"sink": {
 								"type": "AzureSqlSink"
 							},
-							"enableStaging": false
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DistrictName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "DistrictName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "NeighborhoodName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "NeighborhoodName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Street",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Street",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Weekday",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Weekday",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Month",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Day",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Day",
+											"type": "Byte"
+										}
+									},
+									{
+										"source": {
+											"name": "Hour",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Hour",
+											"type": "Byte"
+										}
+									},
+									{
+										"source": {
+											"name": "Partoftheday",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Partoftheday",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Mildinjuries",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Mildinjuries",
+											"type": "Byte"
+										}
+									},
+									{
+										"source": {
+											"name": "Seriousinjuries",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Seriousinjuries",
+											"type": "Byte"
+										}
+									},
+									{
+										"source": {
+											"name": "Victims",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Victims",
+											"type": "Byte"
+										}
+									},
+									{
+										"source": {
+											"name": "Vehiclesinvolved",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Vehiclesinvolved",
+											"type": "Byte"
+										}
+									},
+									{
+										"source": {
+											"name": "Longitude",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Longitude",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "Latitude",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Latitude",
+											"type": "Double"
+										}
+									}
+								]
+							}
 						},
 						"inputs": [
 							{
