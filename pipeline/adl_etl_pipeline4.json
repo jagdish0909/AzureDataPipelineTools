@@ -37,10 +37,17 @@
 						]
 					}
 				],
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "tgttblname"
+					},
+					{
+						"name": "tgtschema"
+					}
+				],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Lookup1').output.value[0]",
+						"value": "@activity('Lookup1').output.value",
 						"type": "Expression"
 					},
 					"isSequential": true,
