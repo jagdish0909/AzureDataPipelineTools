@@ -1,0 +1,42 @@
+{
+	"name": "AzureDB1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "srcfile",
+				"type": "varchar"
+			},
+			{
+				"name": "srccplname",
+				"type": "varchar"
+			},
+			{
+				"name": "tgtschema",
+				"type": "varchar"
+			},
+			{
+				"name": "tgttblname",
+				"type": "varchar"
+			},
+			{
+				"name": "delimeter",
+				"type": "varchar"
+			},
+			{
+				"name": "excstatus",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "test",
+			"table": "metadata"
+		}
+	}
+}
