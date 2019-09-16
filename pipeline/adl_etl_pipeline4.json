@@ -101,7 +101,7 @@
 									"referenceName": "AzureDB1",
 									"type": "DatasetReference",
 									"parameters": {
-										"tgtschema": {
+										"tgttblname": {
 											"value": "[@{item().tgtschema}].[@{item().tgttblname}]",
 											"type": "Expression"
 										}
