@@ -6,10 +6,10 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"tgttblname": {
+			"tgtschema": {
 				"type": "string"
 			},
-			"tgtschema": {
+			"tgttblname": {
 				"type": "string"
 			}
 		},
