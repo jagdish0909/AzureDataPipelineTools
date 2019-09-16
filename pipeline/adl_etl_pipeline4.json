@@ -17,10 +17,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select srcfile,srccolname,tgtschema,tgttblname,delimeter from test.metadata"
+						"sqlReaderQuery": "select  distinct srcfile,tgtschema,tgttblname,delimeter from test.metadata"
 					},
 					"dataset": {
-						"referenceName": "AzureDB1",
+						"referenceName": "AzureSqlTable2",
 						"type": "DatasetReference"
 					},
 					"firstRowOnly": false
@@ -40,7 +40,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@{item().srcfile}",
+						"value": "@activity('Lookup1').output.value[0]",
 						"type": "Expression"
 					},
 					"isSequential": true,
@@ -59,11 +59,11 @@
 							"userProperties": [
 								{
 									"name": "Source",
-									"value": "streameanalyticscsv//"
+									"value": "streameanalyticscsv//@{item().srcfile\n}"
 								},
 								{
 									"name": "Destination",
-									"value": "test.metadata"
+									"value": "@{item().tgtschema}.@{item().tgttblname}"
 								}
 							],
 							"typeProperties": {
@@ -90,11 +90,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"srcfile": {
-											"value": "@activity('Lookup1').output.srcfile\n",
-											"type": "Expression"
-										},
-										"srccolname": {
-											"value": "@activity('Lookup1').output.srccolname",
+											"value": "@item().srcfile\n",
 											"type": "Expression"
 										}
 									}
@@ -106,11 +102,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"tgtschema": {
-											"value": "@activity('Lookup1').output.tgtschema",
-											"type": "Expression"
-										},
-										"tgttblname": {
-											"value": "@activity('Lookup1').output.tgttblname",
+											"value": "[@{item().tgtschema}].[@{item().tgttblname}]",
 											"type": "Expression"
 										}
 									}
