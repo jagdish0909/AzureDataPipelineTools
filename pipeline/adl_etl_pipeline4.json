@@ -37,7 +37,12 @@
 						]
 					}
 				],
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Filelist",
+						"value": " [  {     \"Filename\":\"emp.csv\", \t\"TableSchema\":\"test\", \t\"TableName\":\"emp\"  },  {     \"Filename\":\"dept.csv\", \t\"TableSchema\":\"test\", \t\"TableName\":\"dept\"    {    ]"
+					}
+				],
 				"typeProperties": {
 					"items": {
 						"value": "@activity('Lookup1').output.value",
@@ -101,11 +106,8 @@
 									"referenceName": "AzureDB1",
 									"type": "DatasetReference",
 									"parameters": {
-										"tgttblname": {
-											"value": "@{item().tgtschema}",
-											"type": "Expression"
-										},
-										"tgtschema": "@{item().tgttblname}"
+										"tgtschema": "@{item().tgtschema}",
+										"tgttblname": "@{item().tgttblname}"
 									}
 								}
 							]
@@ -114,6 +116,12 @@
 				}
 			}
 		],
+		"parameters": {
+			"Filelist": {
+				"type": "array",
+				"defaultValue": " [  {     \"Filename\":\"emp.csv\", \t\"TableSchema\":\"test\", \t\"TableName\":\"emp\"  },  {     \"Filename\":\"dept.csv\", \t\"TableSchema\":\"test\", \t\"TableName\":\"dept\"    {    ]"
+			}
+		},
 		"annotations": []
 	}
 }
