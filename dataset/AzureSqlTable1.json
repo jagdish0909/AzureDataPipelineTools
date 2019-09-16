@@ -5,81 +5,26 @@
 			"referenceName": "AzureSqlDatabase1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"tgtschema": {
+				"type": "string"
+			},
+			"tgttblname": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [
-			{
-				"name": "Id",
-				"type": "nvarchar"
-			},
-			{
-				"name": "DistrictName",
-				"type": "nvarchar"
-			},
-			{
-				"name": "NeighborhoodName",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Street",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Weekday",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Month",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Day",
-				"type": "tinyint",
-				"precision": 3
-			},
-			{
-				"name": "Hour",
-				"type": "tinyint",
-				"precision": 3
-			},
-			{
-				"name": "Partoftheday",
-				"type": "nvarchar"
-			},
-			{
-				"name": "Mildinjuries",
-				"type": "tinyint",
-				"precision": 3
-			},
-			{
-				"name": "Seriousinjuries",
-				"type": "tinyint",
-				"precision": 3
-			},
-			{
-				"name": "Victims",
-				"type": "tinyint",
-				"precision": 3
-			},
-			{
-				"name": "Vehiclesinvolved",
-				"type": "tinyint",
-				"precision": 3
-			},
-			{
-				"name": "Longitude",
-				"type": "float",
-				"precision": 15
-			},
-			{
-				"name": "Latitude",
-				"type": "float",
-				"precision": 15
-			}
-		],
+		"schema": [],
 		"typeProperties": {
-			"schema": "test",
-			"table": "accidents"
+			"schema": {
+				"value": "@dataset().tgtschema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().tgttblname",
+				"type": "Expression"
+			}
 		}
 	}
 }
