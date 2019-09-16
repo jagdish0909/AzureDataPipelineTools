@@ -37,14 +37,7 @@
 						]
 					}
 				],
-				"userProperties": [
-					{
-						"name": "tgttblname"
-					},
-					{
-						"name": "tgtschema"
-					}
-				],
+				"userProperties": [],
 				"typeProperties": {
 					"items": {
 						"value": "@activity('Lookup1').output.value",
@@ -109,9 +102,10 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"tgttblname": {
-											"value": "[@{item().tgtschema}].[@{item().tgttblname}]",
+											"value": "@{item().tgtschema}",
 											"type": "Expression"
-										}
+										},
+										"tgtschema": "@{item().tgttblname}"
 									}
 								}
 							]
