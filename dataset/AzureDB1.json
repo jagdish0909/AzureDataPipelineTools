@@ -5,38 +5,26 @@
 			"referenceName": "AzureSqlDatabase1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"tgtschema": {
+				"type": "string"
+			},
+			"tgttblname": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [
-			{
-				"name": "srcfile",
-				"type": "varchar"
-			},
-			{
-				"name": "srccplname",
-				"type": "varchar"
-			},
-			{
-				"name": "tgtschema",
-				"type": "varchar"
-			},
-			{
-				"name": "tgttblname",
-				"type": "varchar"
-			},
-			{
-				"name": "delimeter",
-				"type": "varchar"
-			},
-			{
-				"name": "excstatus",
-				"type": "int",
-				"precision": 10
-			}
-		],
+		"schema": [],
 		"typeProperties": {
-			"schema": "test",
-			"table": "metadata"
+			"schema": {
+				"value": "@dataset().tgtschema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().tgttblname",
+				"type": "Expression"
+			}
 		}
 	}
 }
