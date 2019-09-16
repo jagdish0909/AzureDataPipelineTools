@@ -8,6 +8,9 @@
 		"parameters": {
 			"tgttblname": {
 				"type": "string"
+			},
+			"tgtschema": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
