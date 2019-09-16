@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Get Metadata1",
-				"type": "GetMetadata",
+				"name": "Lookup1",
+				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -15,8 +15,108 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"fieldList": [
-						"addDynamicContent"
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select srcfile,srccolname,tgtschema,tgttblname,delimeter from test.metadata"
+					},
+					"dataset": {
+						"referenceName": "AzureDB1",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@{item().srcfile}",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Copy Data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "streameanalyticscsv//"
+								},
+								{
+									"name": "Destination",
+									"value": "test.metadata"
+								}
+							],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": true,
+										"wildcardFileName": "*.*",
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "list",
+									"type": "DatasetReference",
+									"parameters": {
+										"srcfile": {
+											"value": "@activity('Lookup1').output.srcfile\n",
+											"type": "Expression"
+										},
+										"srccolname": {
+											"value": "@activity('Lookup1').output.srccolname",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "AzureDB1",
+									"type": "DatasetReference",
+									"parameters": {
+										"tgtschema": {
+											"value": "@activity('Lookup1').output.tgtschema",
+											"type": "Expression"
+										},
+										"tgttblname": {
+											"value": "@activity('Lookup1').output.tgttblname",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
 					]
 				}
 			}
