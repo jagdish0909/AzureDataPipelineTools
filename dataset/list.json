@@ -7,7 +7,7 @@
 		},
 		"parameters": {
 			"srcfile": {
-				"type": "string"
+				"type": "array"
 			}
 		},
 		"annotations": [],
@@ -16,7 +16,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": {
-					"value": "@dataset().srcfile",
+					"value": "@item.srcfile",
 					"type": "Expression"
 				},
 				"container": "streameanalyticscsv"
