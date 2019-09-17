@@ -6,10 +6,6 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"dwtable": {
-				"type": "string",
-				"defaultValue": "[@{item().tgtschema}].[@{item().tgttblname}]"
-			},
 			"tgtschema": {
 				"type": "string",
 				"defaultValue": "@{item().tgtschema}"
