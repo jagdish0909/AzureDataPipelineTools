@@ -27,7 +27,7 @@
 		],
 		"typeProperties": {
 			"schema": "test",
-			"table": "employee"
+			"table": "emp"
 		}
 	}
 }
