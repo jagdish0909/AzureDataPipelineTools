@@ -1,0 +1,104 @@
+{
+	"name": "adf_etl_pipeline5",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "empid",
+									"type": "String"
+								},
+								"sink": {
+									"name": "empid",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "empname",
+									"type": "String"
+								},
+								"sink": {
+									"name": "empname",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "empsal",
+									"type": "String"
+								},
+								"sink": {
+									"name": "empsal",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "emploc",
+									"type": "String"
+								},
+								"sink": {
+									"name": "emploc",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "did",
+									"type": "String"
+								},
+								"sink": {
+									"name": "did",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "test1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureSqlTable2",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
