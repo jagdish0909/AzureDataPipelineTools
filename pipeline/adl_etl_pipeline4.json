@@ -95,7 +95,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"srcfile": {
-											"value": "@item().srcfile\n",
+											"value": "@item().srcfile",
 											"type": "Expression"
 										}
 									}
@@ -116,12 +116,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"Filelist": {
-				"type": "array",
-				"defaultValue": " [  {     \"Filename\":\"emp.csv\", \t\"TableSchema\":\"test\", \t\"TableName\":\"emp\"  },  {     \"Filename\":\"dept.csv\", \t\"TableSchema\":\"test\", \t\"TableName\":\"dept\"    {    ]"
-			}
-		},
 		"annotations": []
 	}
 }
