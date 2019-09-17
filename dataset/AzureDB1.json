@@ -7,11 +7,11 @@
 		},
 		"parameters": {
 			"tgtschema": {
-				"type": "string",
+				"type": "array",
 				"defaultValue": "@{item().tgtschema}"
 			},
 			"tgttblname": {
-				"type": "string",
+				"type": "array",
 				"defaultValue": "@{item().tgttblname}"
 			}
 		},
