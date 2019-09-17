@@ -23,8 +23,12 @@
 		"type": "AzureSqlTable",
 		"schema": [],
 		"typeProperties": {
+			"schema": {
+				"value": "@dataset().tgtschema",
+				"type": "Expression"
+			},
 			"table": {
-				"value": "@dataset().dwtable",
+				"value": "@dataset().tgtschema",
 				"type": "Expression"
 			}
 		}
