@@ -7,10 +7,10 @@
 		},
 		"parameters": {
 			"tgtschema": {
-				"type": "string"
+				"type": "array"
 			},
 			"tgttblname": {
-				"type": "string"
+				"type": "array"
 			}
 		},
 		"annotations": [],
