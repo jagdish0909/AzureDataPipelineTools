@@ -64,11 +64,11 @@
 							"userProperties": [
 								{
 									"name": "Source",
-									"value": "streameanalyticscsv//@{item().srcfile\n}"
+									"value": "streameanalyticscsv//@{item().srcfile}"
 								},
 								{
 									"name": "Destination",
-									"value": "@{item().tgtschema}.@{item().tgttblname}"
+									"value": "@{concat('[', item().tgtschema, '].[', item().tgttblname, ']')}."
 								}
 							],
 							"typeProperties": {
@@ -106,6 +106,10 @@
 									"referenceName": "AzureDB1",
 									"type": "DatasetReference",
 									"parameters": {
+										"dwtable": {
+											"value": "@{item().tgtschema}.@{item().tgttblname}",
+											"type": "Expression"
+										},
 										"tgtschema": "@{item().tgtschema}",
 										"tgttblname": "@{item().tgttblname}"
 									}
