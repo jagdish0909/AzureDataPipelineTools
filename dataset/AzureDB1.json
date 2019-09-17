@@ -7,10 +7,10 @@
 		},
 		"parameters": {
 			"tgtschema": {
-				"type": "string"
+				"type": "array"
 			},
 			"tgttblname": {
-				"type": "string"
+				"type": "array"
 			}
 		},
 		"annotations": [],
@@ -18,13 +18,10 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": {
-				"value": "@dataset().tgtschema",
+				"value": "@item().tgtschema",
 				"type": "Expression"
 			},
-			"table": {
-				"value": "@dataset().tgttblname",
-				"type": "Expression"
-			}
+			"table": "@item().tgtcolname"
 		}
 	}
 }
