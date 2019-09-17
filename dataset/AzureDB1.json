@@ -7,7 +7,7 @@
 		},
 		"parameters": {
 			"dwtable": {
-				"type": "object",
+				"type": "string",
 				"defaultValue": "[@{item().tgtschema}].[@{item().tgttblname}]"
 			}
 		},
