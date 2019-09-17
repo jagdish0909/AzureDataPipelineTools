@@ -106,10 +106,6 @@
 									"referenceName": "AzureDB1",
 									"type": "DatasetReference",
 									"parameters": {
-										"dwtable": {
-											"value": "@{item().tgtschema}.@{item().tgttblname}",
-											"type": "Expression"
-										},
 										"tgtschema": "@{item().tgtschema}",
 										"tgttblname": "@{item().tgttblname}"
 									}
@@ -120,6 +116,16 @@
 				}
 			}
 		],
+		"parameters": {
+			"tgtschema": {
+				"type": "string",
+				"defaultValue": "@item().tgtschema"
+			},
+			"tgttblname": {
+				"type": "string",
+				"defaultValue": "@item().tgttblname"
+			}
+		},
 		"annotations": []
 	}
 }
