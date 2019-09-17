@@ -6,11 +6,9 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"tgtschema": {
-				"type": "array"
-			},
-			"tgttblname": {
-				"type": "array"
+			"dwtable": {
+				"type": "object",
+				"defaultValue": "[@{item().tgtschema}].[@{item().tgttblname}]"
 			}
 		},
 		"annotations": [],
@@ -18,11 +16,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": {
-				"value": "@dataset().tgtschema",
-				"type": "Expression"
-			},
-			"table": {
-				"value": "@dataset().tgttblname",
+				"value": "@dataset().dwtable",
 				"type": "Expression"
 			}
 		}
