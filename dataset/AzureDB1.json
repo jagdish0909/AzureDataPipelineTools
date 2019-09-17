@@ -18,10 +18,13 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": {
-				"value": "@item().tgtschema",
+				"value": "@dataset().tgtschema",
 				"type": "Expression"
 			},
-			"table": "@item().tgtcolname"
+			"table": {
+				"value": "@dataset().tgttblname",
+				"type": "Expression"
+			}
 		}
 	}
 }
