@@ -124,12 +124,10 @@
 		],
 		"parameters": {
 			"tgtschema": {
-				"type": "array",
-				"defaultValue": "@item().tgtschema"
+				"type": "string"
 			},
 			"tgttblname": {
-				"type": "array",
-				"defaultValue": "@item().tgttblname"
+				"type": "string"
 			}
 		},
 		"annotations": []
