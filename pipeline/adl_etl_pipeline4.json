@@ -122,14 +122,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"tgtschema": {
-				"type": "string"
-			},
-			"tgttblname": {
-				"type": "string"
-			}
-		},
 		"annotations": []
 	}
 }
