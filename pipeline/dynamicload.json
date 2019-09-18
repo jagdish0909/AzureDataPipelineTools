@@ -71,7 +71,7 @@
 								"sink": {
 									"type": "AzureSqlSink",
 									"preCopyScript": {
-										"value": "Truncate table\n[@{item().tblschema}].[@item().tgttblname]",
+										"value": "TRUNCATE TABLE [@{item().tgtschema}].[@{item().tgttblname}]",
 										"type": "Expression"
 									},
 									"disableMetricsCollection": false
