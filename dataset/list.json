@@ -7,7 +7,7 @@
 		},
 		"parameters": {
 			"srcfile": {
-				"type": "object"
+				"type": "string"
 			}
 		},
 		"annotations": [],

@@ -106,8 +106,14 @@
 									"referenceName": "AzureDB1",
 									"type": "DatasetReference",
 									"parameters": {
-										"tgtschema": "@{item().tgtschema}",
-										"tgttblname": "@{item().tgttblname}"
+										"tgtschema": {
+											"value": "@pipeline().parameters.tgtschema",
+											"type": "Expression"
+										},
+										"tgttblname": {
+											"value": "@pipeline().parameters.tgttblname",
+											"type": "Expression"
+										}
 									}
 								}
 							]
