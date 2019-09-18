@@ -46,7 +46,7 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "test",
+							"name": "Test",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -59,11 +59,11 @@
 							"userProperties": [
 								{
 									"name": "Source",
-									"value": "streameanalyticscsv//"
+									"value": "streameanalyticscsv//@{activity('Lookup1').output.srcfile}"
 								},
 								{
 									"name": "Destination",
-									"value": ""
+									"value": "@{activity('Lookup1').output.tgtschema}.@{activity('Lookup1').output.tgttblname}"
 								}
 							],
 							"typeProperties": {
@@ -72,22 +72,28 @@
 									"storeSettings": {
 										"type": "AzureBlobStorageReadSettings",
 										"recursive": true,
-										"wildcardFileName": "*.*"
+										"wildcardFileName": "*.*",
+										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
 										"type": "DelimitedTextReadSettings"
 									}
 								},
 								"sink": {
-									"type": "AzureSqlSink",
-									"disableMetricsCollection": false
+									"type": "AzureSqlSink"
 								},
 								"enableStaging": false
 							},
 							"inputs": [
 								{
 									"referenceName": "DS_test",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"SourceFile": {
+											"value": "@activity('Lookup1').output.srcfile",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
