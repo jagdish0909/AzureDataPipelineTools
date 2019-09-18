@@ -107,11 +107,11 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"tgtschema": {
-											"value": "@pipeline().parameters.tgtschema",
+											"value": "@item().parameters.tgtschema",
 											"type": "Expression"
 										},
 										"tgttblname": {
-											"value": "@pipeline().parameters.tgttblname",
+											"value": "@item().parameters.tgttblname",
 											"type": "Expression"
 										}
 									}
