@@ -12,7 +12,7 @@
 				"type": "AzureBlobStorageLocation",
 				"container": "streameanalyticscsv"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "|",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
