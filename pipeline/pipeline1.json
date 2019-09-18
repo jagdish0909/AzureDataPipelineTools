@@ -90,7 +90,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"SourceFile": {
-											"value": "@activity('Lookup1').output.value.srcfile",
+											"value": "@{item().srcfile}",
 											"type": "Expression"
 										}
 									}
@@ -102,11 +102,11 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"tgtschema": {
-											"value": "@activity('Lookup1').output.value.tgtschema",
+											"value": "@{item().tgtschema}",
 											"type": "Expression"
 										},
 										"tgttblname": {
-											"value": "@activity('Lookup1').output.value.tgttblname",
+											"value": "@{item().tgttblname}",
 											"type": "Expression"
 										}
 									}
