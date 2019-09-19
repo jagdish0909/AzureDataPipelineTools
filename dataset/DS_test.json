@@ -8,6 +8,9 @@
 		"parameters": {
 			"SourceFile": {
 				"type": "string"
+			},
+			"Delimiter": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
@@ -21,7 +24,10 @@
 				},
 				"container": "streameanalyticscsv"
 			},
-			"columnDelimiter": "|",
+			"columnDelimiter": {
+				"value": "@dataset().Delimiter",
+				"type": "Expression"
+			},
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
