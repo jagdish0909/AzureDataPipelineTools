@@ -1,3 +1,4 @@
+
 # Azure Data Factory Pipeline: dynamicload
 
 ## Overview
@@ -16,3 +17,65 @@ This Azure Data Factory (ADF) pipeline named **dynamicload** is designed to dyna
   ```sql
   SELECT DISTINCT srcfile, tgtschema, tgttblname, delimeter 
   FROM test.metadata
+  ```
+
+- **Properties**:
+  - **Dataset**: `AzureSqlTable2` - Points to the Azure SQL Database.
+  - **Output**: The result is stored as a collection of values used in the subsequent `ForEach` activity.
+  - **First Row Only**: Set to `false`, meaning all rows from the query result will be returned.
+
+### 2. ForEach1 Activity
+- **Description**: This activity iterates over the collection of metadata fetched in the `Lookup1` activity and dynamically loads data from Azure Blob Storage to the Azure SQL Database.
+
+- **Loop Behavior**:
+  - The loop will process the items sequentially (`isSequential: true`).
+  - The items for iteration are based on the expression:
+    ```json
+    @activity('Lookup1').output.value
+    ```
+
+#### a. Copy Data1 Activity (inside ForEach1)
+- **Description**: The `Copy Data1` activity is responsible for copying data from a source file in Azure Blob Storage to the target table in the Azure SQL Database, truncating the target table before the load.
+
+- **Source**:
+  - **Type**: `DelimitedTextSource` - Reads delimited text files (e.g., CSV) from Azure Blob Storage.
+  - **Settings**: 
+    - Uses `AzureBlobStorageReadSettings` with recursive search enabled (`recursive: true`).
+    - Reads the file specified in the metadata.
+
+- **Sink**:
+  - **Type**: `AzureSqlSink` - Writes the data to an Azure SQL Database table.
+  - **Pre-Copy Script**: A truncate command is dynamically generated to clear the target table before loading new data:
+    ```sql
+    TRUNCATE TABLE [@{item().tgtschema}].[@{item().tgttblname}]
+    ```
+  
+- **Inputs**:
+  - **Dataset Reference**: `DS_test` - Dataset used to read from Azure Blob Storage, with the source file dynamically passed through the `SourceFile` parameter.
+  
+- **Outputs**:
+  - **Dataset Reference**: `AzureDB1` - Points to the Azure SQL Database, with the schema and table name dynamically passed through the parameters (`tgtschema` and `tgttblname`).
+
+---
+
+## Configuration
+
+### Datasets
+1. **AzureSqlTable2**: Represents the Azure SQL Database where the metadata is stored.
+2. **DS_test**: Represents the Azure Blob Storage containing the source data files.
+3. **AzureDB1**: Represents the target Azure SQL Database where data is copied to.
+
+### Parameters
+- `SourceFile`: The file path in Azure Blob Storage is dynamically assigned using `@{item().srcfile}` from the metadata.
+- `tgtschema` and `tgttblname`: The target schema and table name are dynamically assigned using `@{item().tgtschema}` and `@{item().tgttblname}` from the metadata.
+
+---
+
+## Error Handling
+- The pipeline is set to retry failed activities with a timeout policy of **7 days** (`timeout: "7.00:00:00"`) and no retries (`retry: 0`).
+  
+---
+
+## Notes
+- Ensure the metadata in the `test.metadata` table is updated correctly before running the pipeline, as it drives the dynamic data loading process.
+- The pre-copy script will truncate the target table before each load, so make sure that truncating the data is appropriate for your use case.
