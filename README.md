@@ -1,7 +1,10 @@
 
-# Azure Data Factory Pipeline: dynamicload
+# Azure Data Factory Pipeline:
+      1. dynamicload,
+      2. dyanmicMultidelimeterload,
+      3. databrick job execution.
 
-## Overview
+## Overview - dynamicload
 This Azure Data Factory (ADF) pipeline named **dynamicload** is designed to dynamically copy data from a source (Azure Blob Storage) to a target (Azure SQL Database) based on metadata retrieved from an Azure SQL Database table. The pipeline involves two key activities:
 1. **Lookup1** - Fetch metadata information from the database.
 2. **ForEach1** - Iterate through the metadata and perform dynamic data copying for each dataset.
