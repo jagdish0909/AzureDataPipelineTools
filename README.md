@@ -1,15 +1,46 @@
+# Azure Data Factory ETL Pipelines
 
-# Azure Data Factory Pipeline:
-      1. dynamicload,
-      2. dyanmicMultidelimeterload,
-      3. databrick job execution.
+This project contains a set of Azure Data Factory (ADF) pipelines designed for ETL (Extract, Transform, Load) processes. The pipelines are configured to copy data from various sources to Azure SQL Database.
+
+## File Details
+
+### adf_etl_pipeline_1.json
+- **Description**: This pipeline copies data from a delimited text source to an Azure SQL table.
+- **Activities**:
+  - **Copy Data2**: Copies data from a delimited text source (`DelimitedText1`) to an Azure SQL table (`AzureSqlTable1`).
+
+### adf_etl_pipelien2.json
+- **Description**: This pipeline copies data from a binary source to an Azure SQL table.
+- **Activities**:
+  - **Copy Data1**: Copies data from a binary source (`Binary1`) to an Azure SQL table (`AzureSqlTable2`).
+
+### adl_etl_pipeline4.json
+- **Description**: This pipeline performs a lookup operation to retrieve metadata and then iterates over the results to copy data from Azure Blob Storage to Azure SQL Database.
+- **Activities**:
+  - **Lookup1**: Retrieves metadata from an Azure SQL table (`AzureSqlTable2`).
+  - **ForEach1**: Iterates over the lookup results and copies data from Azure Blob Storage to Azure SQL Database.
+
+### adf_etl_pipeline5.json
+- **Description**: This pipeline copies data from a delimited text source stored in Azure Blob Storage to an Azure SQL table. It includes column mappings.
+- **Activities**:
+  - **Copy Data1**: Copies data from a delimited text source (`test1`) to an Azure SQL table (`AzureSqlTable2`). It maps specific columns from the source to the target.
+
+### dynamic_multidelimeter.json
+- **Description**: This pipeline dynamically handles multiple delimiters when copying data from Azure Blob Storage to Azure SQL Database.
+- **Activities**:
+  - **Lookup1**: Retrieves metadata from an Azure SQL table (`AzureSqlTable2`).
+  - **ForEach1**: Iterates over the lookup results and copies data from Azure Blob Storage to Azure SQL Database, using the specified delimiter.
+
+### dynamicload.json
+- **Description**: This pipeline dynamically loads data from Azure Blob Storage to Azure SQL Database based on metadata.
+- **Activities**:
+  - **Lookup1**: Retrieves metadata from an Azure SQL table (`AzureSqlTable2`).
+  - **ForEach1**: Iterates over the lookup results and copies data from Azure Blob Storage to Azure SQL Database.
 
 ## Overview - dynamicload
 This Azure Data Factory (ADF) pipeline named **dynamicload** is designed to dynamically copy data from a source (Azure Blob Storage) to a target (Azure SQL Database) based on metadata retrieved from an Azure SQL Database table. The pipeline involves two key activities:
 1. **Lookup1** - Fetch metadata information from the database.
 2. **ForEach1** - Iterate through the metadata and perform dynamic data copying for each dataset.
-
----
 
 ## Pipeline Activities
 
@@ -82,3 +113,23 @@ This Azure Data Factory (ADF) pipeline named **dynamicload** is designed to dyna
 ## Notes
 - Ensure the metadata in the `test.metadata` table is updated correctly before running the pipeline, as it drives the dynamic data loading process.
 - The pre-copy script will truncate the target table before each load, so make sure that truncating the data is appropriate for your use case.
+
+## Usage Instructions
+
+1. **Prerequisites**:
+   - Azure Data Factory instance.
+   - Azure SQL Database.
+   - Azure Blob Storage (if applicable).
+
+2. **Setup**:
+   - Deploy the pipelines to your Azure Data Factory instance.
+   - Configure the linked services and datasets to point to your data sources and targets.
+
+3. **Running the Pipelines**:
+   - Trigger the pipelines manually or set up a schedule for automatic execution.
+
+## Contributing
+Contributions are welcome! Please fork the repository and submit a pull request with your changes.
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
